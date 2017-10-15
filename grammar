@@ -1,0 +1,47 @@
+//This is the rule to parse
+
+//RULE 1 IF plan A IF copay 10 THEN deductible 20
+
+start =
+	expression
+
+expression =
+	cat:category*
+    cond:condition*
+	outp:output*
+    	{
+			return JSON.stringify(
+					{
+						"RULE": cat, "condition": cond, "output": outp
+					}, undefined
+				);
+		}
+
+category =
+	whitespace 'RULE ' symbol:digit
+    whitespace 
+    	{
+    		return symbol;
+    	}
+
+condition =
+	whitespace 'IF ' symbol:word
+    whitespace phrase:alphanumeric
+    whitespace
+    	{ return [symbol,phrase]; }
+
+output =
+	whitespace 'THEN ' symbol:word
+    whitespace phrase:alphanumeric
+    whitespace
+    	{ return [symbol,phrase]; }
+
+whitespace = [' '\n\r]*
+
+word = wholeWord:[a-zA-Z]* { return wholeWord.join(""); }
+
+digit = wholeDigit:[0-9]* { return wholeDigit.join(""); }
+
+alphanumeric = wholePhrase:[a-zA-Z0-9]* { return wholePhrase.join(""); }
+
+price = amount: [$] digit { return amount;}
