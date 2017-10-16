@@ -1,0 +1,30 @@
+body {
+    background-color: lightblue;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+#deceng {
+	text-align: center;
+    color: blue;
+	font-family: "Comic Sans MS", cursive, sans-serif;
+	font-weight: bold;
+	font-size: 5em;
+}
+
+.home_links {
+	margin: 1em 1em 1em 1em;
+	padding: 0.5em 0.5em 0.5em 0.5em;
+	text-align: center;
+    color: #4CAF50;
+	font-weight: bold;
+	font-size: 2em;
+	border-style: solid;
+	border-radius: 1em 1em 1em 1em;
+}
