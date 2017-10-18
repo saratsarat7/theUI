@@ -7,34 +7,34 @@ start =
 
 expression =
 	cat:category*
-    cond:condition*
+	cond:condition*
 	outp:output*
-    	{
+		{
 			return JSON.stringify(
 					{
-						"RULE": cat, "condition": cond, "output": outp
+						"RULE": cat, "CONDITION": cond, "RESULT": outp
 					}, undefined
 				);
 		}
 
 category =
 	whitespace 'RULE ' symbol:digit
-    whitespace 
-    	{
-    		return symbol;
-    	}
+	whitespace 
+		{
+			return symbol;
+		}
 
 condition =
 	whitespace 'IF ' symbol:word
-    whitespace phrase:alphanumeric
-    whitespace
-    	{ return [symbol,phrase]; }
+	whitespace phrase:alphanumeric
+	whitespace
+		{ return [symbol,phrase]; }
 
 output =
 	whitespace 'THEN ' symbol:word
-    whitespace phrase:alphanumeric
-    whitespace
-    	{ return [symbol,phrase]; }
+	whitespace phrase:alphanumeric
+	whitespace
+		{ return [symbol,phrase]; }
 
 whitespace = [' '\n\r]*
 
