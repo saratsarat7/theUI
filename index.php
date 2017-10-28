@@ -25,5 +25,12 @@
 		<a href="rules.php" class=home_links id=register>
 			Click here for rules
 		</a>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<a href="vars.php" class=home_links id=vars>
+			Click here to add variables
+		</a>
     </body>
 </html>

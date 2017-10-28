@@ -73,3 +73,47 @@ function download() {
         document.body.removeChild(element);
     }
 }
+
+function insert_db(rule_inp) {
+    // var rule_inp = document.getElementById("rule").value;
+    var peg_out = document.getElementById("parse_json").innerHTML;
+    var dsg_out = document.getElementById("rule_out").innerHTML;
+    var error = document.getElementById("error_switch").value;
+
+    if (error == "Y") {
+        window.alert("There is an error, cant insert to DB.");
+    } else {
+        $.post("db_operation.php",
+        {
+            rule: rule_inp,
+            peg: peg_out,
+            dsg: dsg_out
+        },
+        function(data, status){
+            if (status == "success") {
+                window.alert("Rule Added Successfully");
+                location.reload();
+            }
+            // document.getElementById("error_msg").innerHTML = status;
+            // window.alert("Data: " + data + "\nStatus: " + status);
+        });
+    }
+}
+
+function load_rules() {
+    var rules_json = JSON.parse(document.getElementById("rules_json").innerHTML);
+    var old_rules = document.getElementById("old_rules");
+
+    for (var i in rules_json) {
+        var div = document.createElement("div");
+        div.id = rules_json[i].rule_id;
+        var input = document.createElement("input");
+        input.type = "text"; 
+        input.value = rules_json[i].rule_plain;
+        input.style.width = rules_json[i].rule_plain.length * 7;
+        div.appendChild(input);
+        var br = document.createElement("br");
+        div.appendChild(br);
+        old_rules.appendChild(div);
+    }
+}
